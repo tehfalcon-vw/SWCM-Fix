@@ -1,13 +1,15 @@
 # RNS-E CAN Translator
 
-STM32 Nucleo-C542RC firmware for translating selected VW multifunction steering
-wheel CAN button events into Audi RNS-E compatible steering wheel commands.
+STM32 Nucleo-C542RC firmware for translating VW multifunction steering
+wheel control module CAN button events into Audi compatible steering wheel commands.
 
 ## Hardware
 
 - STM32 Nucleo-C542RC
-- Onboard FDCAN transceiver
-- Classic CAN at 100 kbit/s
+- 5V Buck Converter
+
+## Limitations
+VW SWCM firmware is unable to recognize the roller switch inputs.
 
 ## Current Mappings
 
@@ -16,7 +18,7 @@ wheel CAN button events into Audi RNS-E compatible steering wheel commands.
 | `0x5C1 01000001` mode | `0x5C3 3907` volume down |
 | `0x5C1 04000001` voice | `0x5C3 3906` volume up |
 | `0x5C1 08000001` mute | `0x5C3 3902` track previous |
-| `0x5C1 02000001` play/pause | `0x5C3 3903` track next |
+| `0x5C1 02000001` ok | `0x5C3 3903` track next |
 
 Each RNS-E command is sent twice, then released with `0x5C3 3900`.
 
