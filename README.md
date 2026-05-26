@@ -1,2 +1,56 @@
-# SWCM-Fix
-1K0 SWCM Signal Fix for Audi Steering Wheels
+# RNS-E CAN Translator
+
+STM32 Nucleo-C542RC firmware for translating selected VW multifunction steering
+wheel CAN button events into Audi RNS-E compatible steering wheel commands.
+
+## Hardware
+
+- STM32 Nucleo-C542RC
+- Onboard FDCAN transceiver
+- Classic CAN at 100 kbit/s
+
+## Current Mappings
+
+| VW input | RNS-E output |
+| --- | --- |
+| `0x5C1 01000001` mode | `0x5C3 3907` volume down |
+| `0x5C1 04000001` voice | `0x5C3 3906` volume up |
+| `0x5C1 08000001` mute | `0x5C3 3902` track previous |
+| `0x5C1 02000001` play/pause | `0x5C3 3903` track next |
+
+Each RNS-E command is sent twice, then released with `0x5C3 3900`.
+
+## Build
+
+This project is a Zephyr application. Set up a Zephyr workspace next to this
+repository as `zephyr-workspace`, create a Python environment at `.venv`, and
+install `west` plus the Zephyr Python requirements.
+
+Build:
+
+```sh
+./scripts/build-stm32.sh
+```
+
+Flash:
+
+```sh
+./.venv/bin/pyocd flash -t STM32C542RCT6 build/can_sniff_inject/zephyr/zephyr.hex
+```
+
+Monitor:
+
+```sh
+./scripts/monitor-stm32.sh /dev/cu.usbmodemXXXX
+```
+
+## Serial Commands
+
+- `stats`
+- `sniff on`
+- `sniff off`
+- `translate on`
+- `translate off`
+- `send <std-id-hex> <data-hex>`
+
+Translation is enabled at boot. Sniff printing is disabled at boot.
