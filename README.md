@@ -17,7 +17,7 @@ Connect 12v Power to 5v Buck Converter to Terminal 15 (ign) power source, then 5
 Stable Firmware to Flash to the STM32 is located on the releases page.
 
 ## Limitations
-VW SWCM firmware is unable to recognize the roller switch inputs.
+VW SWCM firmware is unable to recognize the roller switch inputs. This requires a Lin to Lin translator.
 
 ## Current Mappings
 
