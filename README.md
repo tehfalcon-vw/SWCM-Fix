@@ -12,7 +12,7 @@ Example: VW 1K0 SWCM installed in Audi A3 8P
 
 Connect STM32 CanH/CANL at CANBUS Gateway (J533) on Comfort CAN. 
 
-Connect 12v Power to 5v Buck Converter to Terminal 15 (ign) power source, then 5v buck converter to the STM32.
+Connect fused 12v Power to 5v Buck Converter to Terminal 15 (ign) power source, then 5v buck converter to the STM32.
 
 Stable Firmware to Flash to the STM32 is located on the releases page.
 
